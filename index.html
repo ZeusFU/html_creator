@@ -32,6 +32,22 @@
       font-size: 16px;
       margin-bottom: 10px;
     }
+    .toolbar {
+      margin-bottom: 10px;
+    }
+    .toolbar button {
+      background: #3A82F7;
+      color: #fff;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      margin-right: 5px;
+    }
+    .toolbar button:hover {
+      background: #2a6fd1;
+    }
     .preview {
       background: #f9f9f9;
       padding: 15px;
@@ -65,6 +81,13 @@
 <body>
   <div class="container">
     <h1>Email Template Generator</h1>
+    <div class="toolbar">
+      <button onclick="formatText('bold')">Bold</button>
+      <button onclick="formatText('italic')">Italic</button>
+      <button onclick="formatText('underline')">Underline</button>
+      <button onclick="insertVariable('name')">Insert {{ name }}</button>
+      <button onclick="insertVariable('live_balance')">Insert {{ live_balance }}</button>
+    </div>
     <textarea id="inputText" placeholder="Enter your text here..."></textarea>
     <button onclick="generateHTML()">Generate HTML</button>
 
@@ -191,21 +214,56 @@
       </html>
     `;
 
+    // Function to format text (bold, italic, underline)
+    function formatText(style) {
+      const inputText = document.getElementById('inputText');
+      const selectedText = inputText.value.substring(inputText.selectionStart, inputText.selectionEnd);
+
+      let formattedText;
+      switch (style) {
+        case 'bold':
+          formattedText = `<strong>${selectedText}</strong>`;
+          break;
+        case 'italic':
+          formattedText = `<em>${selectedText}</em>`;
+          break;
+        case 'underline':
+          formattedText = `<u>${selectedText}</u>`;
+          break;
+        default:
+          formattedText = selectedText;
+      }
+
+      // Replace selected text with formatted text
+      inputText.setRangeText(formattedText, inputText.selectionStart, inputText.selectionEnd, 'end');
+    }
+
+    // Function to insert variables (e.g., {{ name }})
+    function insertVariable(variable) {
+      const inputText = document.getElementById('inputText');
+      inputText.setRangeText(`{{ ${variable} }}`, inputText.selectionStart, inputText.selectionEnd, 'end');
+    }
+
+    // Function to generate HTML
     function generateHTML() {
       const inputText = document.getElementById('inputText').value;
       const preview = document.getElementById('preview');
       const outputHTML = document.getElementById('outputHTML');
 
+      // Replace line breaks with <br> tags for preview
+      const previewText = inputText.replace(/\n/g, '<br>');
+
       // Insert dynamic content into the template
       const fullHTML = template.replace('<div id="dynamicContent">', `<div id="dynamicContent">${inputText}</div>`);
 
       // Update preview
-      preview.innerHTML = inputText;
+      preview.innerHTML = previewText;
 
       // Display generated HTML
       outputHTML.textContent = fullHTML;
     }
 
+    // Function to copy HTML to clipboard
     function copyToClipboard() {
       const outputHTML = document.getElementById('outputHTML');
       navigator.clipboard.writeText(outputHTML.textContent).then(() => {
