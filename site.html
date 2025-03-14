@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Email Template Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f4f4f9;
+      color: #333;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #3A82F7;
+    }
+    textarea {
+      width: 100%;
+      height: 100px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+    .preview {
+      background: #f9f9f9;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      margin-top: 20px;
+    }
+    .generated-html {
+      background: #333;
+      color: #fff;
+      padding: 15px;
+      border-radius: 4px;
+      margin-top: 20px;
+      font-family: monospace;
+      white-space: pre-wrap;
+    }
+    button {
+      background: #3A82F7;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background: #2a6fd1;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Email Template Generator</h1>
+    <textarea id="inputText" placeholder="Enter your text here..."></textarea>
+    <button onclick="generateHTML()">Generate HTML</button>
+
+    <div class="preview">
+      <h3>Preview</h3>
+      <div id="preview"></div>
+    </div>
+
+    <div class="generated-html">
+      <h3>Generated HTML Code</h3>
+      <pre id="outputHTML"></pre>
+      <button onclick="copyToClipboard()">Copy to Clipboard</button>
+    </div>
+  </div>
+
+  <script>
+    // Predefined template structure
+    const template = `
+      <html xmlns="http://www.w3.org/1999/xhtml" class="sg-campaigns" data-editor-version="2">
+        <head>
+          <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+          <style>
+            body, p, div {
+              font-family: tahoma, geneva, sans-serif;
+              font-size: 18px;
+            }
+            body {
+              color: #000;
+            }
+            body a {
+              color: #3A82F7;
+              text-decoration: none;
+            }
+            h2 { font-size: 24px; color: #3A82F7; }
+            h3 { font-size: 20px; color: #3A82F7; }
+            strong { font-weight: bold; }
+            em { font-style: italic; }
+            u { text-decoration: underline; }
+          </style>
+        </head>
+        <body>
+          <center class="wrapper" data-link-color="#3A82F7" data-body-style="font-size:18px; font-family:tahoma,geneva,sans-serif; color:#FFFF; background-color:#ffffff;">
+            <div class="webkit">
+              <table cellpadding="0" cellspacing="0" border="0" width="100%" class="wrapper" bgcolor="#ffffff">
+                <tbody>
+                  <tr>
+                    <td valign="top" bgcolor="#ffffff" width="100%">
+                      <table width="100%" role="content-container" class="outer" align="center" cellpadding="0" cellspacing="0" border="0">
+                        <tbody>
+                          <tr>
+                            <td width="100%">
+                              <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                                <tbody>
+                                  <tr>
+                                    <td>
+                                      <!--[if mso]>
+                                      <center>
+                                        <table>
+                                          <tr>
+                                            <td width="600">
+                                              <![endif]-->
+                                              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%; max-width:600px;" align="center">
+                                                <tbody>
+                                                  <tr>
+                                                    <td role="modules-container" style="padding:0px 0px 0px 0px; color:#FFFF; text-align:left;" bgcolor="#ffffff" width="100%" align="left">
+                                                      <!-- Header Logo -->
+                                                      <table class="wrapper" role="module" data-type="image" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;" data-muid="13620e23-c2ba-4bf2-93ab-1fb05b371601">
+                                                        <tbody>
+                                                          <tr>
+                                                            <td style="font-size:6px; line-height:10px; padding:20px 0px 0px 0px;" valign="top" align="center">
+                                                              <a href="https://myfundedfutures.com/" target="_blank"><img class="max-width" border="0" style="display:block; color:#000000; text-decoration:none; font-family:Helvetica, arial, sans-serif; font-size:16px; max-width:100% !important; width:100%; height:auto !important;" width="600" alt="MyFundedFutures" data-proportionally-constrained="true" data-responsive="true" src="http://cdn.mcauto-images-production.sendgrid.net/dc44e74e6e3d2792/051af0e5-85e9-4136-ba51-480c0368fde2/547x161.png"></a>
+                                                            </td>
+                                                          </tr>
+                                                        </tbody>
+                                                      </table>
+                                                      <!-- Main Content -->
+                                                      <table class="module" role="module" data-type="text" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;" data-muid="9a9f0f56-ca82-415e-9175-a64aa571f43b" data-mc-module-version="2019-10-22">
+                                                        <tbody>
+                                                          <tr>
+                                                            <td style="padding:18px; line-height:28px; text-align:inherit;" height="100%" valign="top" bgcolor="" role="module-content">
+                                                              <div id="dynamicContent">
+                                                                <!-- Dynamic content will be inserted here -->
+                                                              </div>
+                                                            </td>
+                                                          </tr>
+                                                        </tbody>
+                                                      </table>
+                                                      <!-- Footer -->
+                                                      <table class="wrapper" role="module" data-type="image" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;" data-muid="a2ef04da-164b-4fd5-b210-75c30216a1d6">
+                                                        <tbody>
+                                                          <tr>
+                                                            <td style="font-size:6px; line-height:10px; padding:0px 0px 0px 0px;" valign="top" align="center">
+                                                              <a href="https://discord.gg/myfundedfutures" target="_blank"><img class="max-width" border="0" style="display:block; color:#000000; text-decoration:none; font-family:Helvetica, arial, sans-serif; font-size:16px; max-width:100% !important; width:100%; height:auto !important;" width="600" alt="Join MFFU Community" data-proportionally-constrained="true" data-responsive="true" src="http://cdn.mcauto-images-production.sendgrid.net/dc44e74e6e3d2792/75b11549-e21d-4ada-8f75-571b486bd759/579x348.png"></a>
+                                                            </td>
+                                                          </tr>
+                                                        </tbody>
+                                                      </table>
+                                                    </td>
+                                                  </tr>
+                                                </tbody>
+                                              </table>
+                                              <!--[if mso]>
+                                            </td>
+                                          </tr>
+                                        </table>
+                                      </center>
+                                      <![endif]-->
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </center>
+        </body>
+      </html>
+    `;
+
+    function generateHTML() {
+      const inputText = document.getElementById('inputText').value;
+      const preview = document.getElementById('preview');
+      const outputHTML = document.getElementById('outputHTML');
+
+      // Insert dynamic content into the template
+      const fullHTML = template.replace('<div id="dynamicContent">', `<div id="dynamicContent">${inputText}</div>`);
+
+      // Update preview
+      preview.innerHTML = inputText;
+
+      // Display generated HTML
+      outputHTML.textContent = fullHTML;
+    }
+
+    function copyToClipboard() {
+      const outputHTML = document.getElementById('outputHTML');
+      navigator.clipboard.writeText(outputHTML.textContent).then(() => {
+        alert('HTML code copied to clipboard!');
+      });
+    }
+  </script>
+</body>
+</html>
